@@ -21,18 +21,10 @@ class Tree
     @name_array
   end
 
-  def names_with_indentation(tree)
-    if @name_array.length == 1 || @name_array.length == 2
-      @name_array << "  " + tree.name
-    elsif @name_array.length == 3
-      @name_array << "    " + tree.name
-    elsif @name_array.length == 4
-      @name_array << "      " + tree.name
-    else
-      @name_array << tree.name
-    end
+  def names_with_indentation(tree, indentation = 0)
+    @name_array << (" " * indentation + tree.name)
     tree.children.each do |child|
-      names_with_indentation(child)
+      names_with_indentation(child, indentation + 2)
     end
     @name_array
   end

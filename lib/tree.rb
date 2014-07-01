@@ -37,4 +37,12 @@ class Tree
     @name_array
   end
 
+  def to_hash(tree)
+    name_hash = {tree.name => {} }
+    tree.children.each do |child|
+      name_hash[tree.name].merge!(to_hash(child))
+    end
+    name_hash
+  end
+
 end
